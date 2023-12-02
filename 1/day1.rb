@@ -22,29 +22,44 @@ end
 
 def part_two(amended_calibration_values)
   actual_calibrations = amended_calibration_values.map do |amended_calibration|
-    calibration_from_words(amended_calibration)
+    first_number_occurrence(amended_calibration) * 10 + last_number_occurrence(amended_calibration)
   end
   actual_calibrations.reduce { |sum, calibration| sum + calibration }
 end
 
-def calibration_from_words(calibration_word)
-  nums = []
-  index_tracker = {}
-  DIGITS.flatten.map(&:to_s).each do |word|
-    idx_of_occurence = calibration_word.index(word)
-    next if idx_of_occurence.nil?
-
-    ridx_of_occurrence = calibration_word.rindex(word)
-    if index_tracker[:first_word_idx].nil? || idx_of_occurence < index_tracker[:first_word_idx]
-      index_tracker[:first_word_idx] = idx_of_occurence
-      nums[0] = digit_from_word(word)
-    end
-    if index_tracker[:last_word_idx].nil? || ridx_of_occurrence > index_tracker[:last_word_idx]
-      nums[1] = digit_from_word(word)
-      index_tracker[:last_word_idx] = ridx_of_occurrence
+def first_number_occurrence(calibration_code)
+  first_number = nil
+  idx = 0
+  while first_number.nil?
+    if numeric?(calibration_code[idx])
+      first_number = calibration_code[idx].to_i
+    else
+      first_number = numeric_word_in_string(calibration_code[0, idx + 1])
+      idx += 1
     end
   end
-  nums.first * 10 + nums.last
+  first_number
+end
+
+def last_number_occurrence(calibration_code)
+  last_number = nil
+  idx = calibration_code.length - 1
+  while last_number.nil?
+    if numeric?(calibration_code[idx])
+      last_number = calibration_code[idx].to_i
+    else
+      last_number = numeric_word_in_string(calibration_code[idx, calibration_code.length - 1])
+      idx -= 1
+    end
+  end
+  last_number
+end
+
+def numeric_word_in_string(str)
+  DIGITS.each_pair do |word, d|
+    return d if str.include? word.to_s
+  end
+  nil
 end
 
 def digit_from_word(word)
