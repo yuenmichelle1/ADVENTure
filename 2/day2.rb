@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+BAG_CONTENTS = {
+  'red': 12,
+  'green': 13,
+  'blue': 14
+}.freeze
+
 def part_one(games)
   sum_of_possible_game_ids = 0
   games.each do |game|
@@ -44,12 +50,6 @@ def smallest_possible(draws)
   end
   smallest_possible_cubes
 end
-
-BAG_CONTENTS = {
-  'red': 12,
-  'green': 13,
-  'blue': 14
-}.freeze
 
 input = File.readlines('./day2_input.txt')
 puts('PART ONE')
