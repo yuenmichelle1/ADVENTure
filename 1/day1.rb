@@ -62,14 +62,6 @@ def numeric_word_in_string(str)
   nil
 end
 
-def digit_from_word(word)
-  if DIGITS.key?(word.to_sym)
-    DIGITS[word.to_sym]
-  else
-    word.to_i
-  end
-end
-
 def numeric?(look_ahead)
   look_ahead.match?(/[[:digit:]]/)
 end
