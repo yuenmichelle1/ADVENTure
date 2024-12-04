@@ -16,17 +16,17 @@ def part_two(input)
   dont_indices = find_pattern_indices(/don't\(\)/, input)
   do_indices = find_pattern_indices(/do\(\)/, input)
 
-  add_to_string = true
+  add_to_modified_string = true
   modified_input = input.chars.each_with_index.with_object([]) do |(char, i), arr|
     if dont_indices.include? i
-      add_to_string = false
+      add_to_modified_string = false
     elsif do_indices.include? i
-      add_to_string = true
+      add_to_modified_string = true
     end
 
-    arr << char if add_to_string
-  end
-  part_one(modified_input.join)
+    arr << char if add_to_modified_string
+  end.join
+  part_one(modified_input)
 end
 
 puts part_one(File.read('./day3_input.txt'))
