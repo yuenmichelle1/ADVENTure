@@ -1,0 +1,1 @@
+example_input = File.readlines('./day5_example_input.txt')
