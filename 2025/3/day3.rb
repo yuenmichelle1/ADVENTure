@@ -30,6 +30,7 @@ input.each do |battery|
     (0..11).each do |n|
         if n == 0
             twelve_indexes[0] = 0
+            # slice the array from index 0 to the max index so that we can still make a 12-digit number with the remainder
             first_joltages = battery_joltages[0..(battery_joltages.length - 12)]
             first_joltages.each_with_index do |battery_val, i|
                 twelve_indexes[0] = i  if battery_val > battery_joltages[twelve_indexes[0]]
@@ -37,8 +38,8 @@ input.each do |battery|
         else
             # set the initial val as the next index of the previous key
             twelve_indexes[n] = twelve_indexes[n - 1] + 1
-            # slice the array to only look at the values that can get us a sequence of twelve at the end
-            n_joltages = battery_joltages[(twelve_indexes[n-1] + 1)..(battery_joltages.length - (12-n))]
+            # slice the array to only look at the values that can get us a sequence of twelve at the end with the remainder that is left
+            n_joltages = battery_joltages[twelve_indexes[n]..(battery_joltages.length - (12 - n))]
 
             n_joltages.each_with_index do |battery_val, i|
                 twelve_indexes[n] = i + twelve_indexes[n-1] + 1 if battery_val > battery_joltages[twelve_indexes[n]]
@@ -48,6 +49,8 @@ input.each do |battery|
     end
     largest_joltages << joltage
 end
+
+puts "PART TWO"
 puts largest_joltages.sum
 
 # 2342 34234234278
