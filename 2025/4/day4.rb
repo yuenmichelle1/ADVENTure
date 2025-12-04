@@ -57,39 +57,3 @@ until to_be_removed_count <= 0
     to_be_removed_count = part_one(input_matrix, indices_to_replace_with_dots)
 end
 puts removal_total
-
-
-
-
-# puts part_one(input_matrix,indices_to_replace_with_dots)
-# puts indices_to_replace_with_dots
-
-# PART ONE
-
-# input_matrix.each_with_index do |val, row_idx, col_idx|
-#     if val == '@'
-#         ats_around_counter = 0
-
-#         # left
-#         ats_around_counter += 1 if input_matrix[row_idx, col_idx - 1] == '@' && (col_idx - 1) >= 0
-#         # right
-#         ats_around_counter += 1 if input_matrix[row_idx, col_idx + 1] == '@' &&  (col_idx + 1) <  input_matrix.column_count
-#         # top
-#         ats_around_counter += 1 if input_matrix[row_idx - 1, col_idx] == '@' && (row_idx - 1) >= 0
-#         # top left
-#         ats_around_counter += 1 if input_matrix[row_idx - 1, col_idx - 1] == '@' && (row_idx - 1) >= 0 && (col_idx - 1) >= 0
-#         #top right
-#         ats_around_counter += 1 if input_matrix[row_idx - 1, col_idx + 1] == '@' && (row_idx - 1) >= 0 && (col_idx + 1) < input_matrix.column_count
-#         # bottom
-#         ats_around_counter += 1 if input_matrix[row_idx + 1, col_idx] == '@' && row_idx + 1 < input_matrix.row_count
-#         # bottom left
-#         ats_around_counter += 1 if input_matrix[row_idx + 1, col_idx - 1] == '@' && row_idx + 1 < input_matrix.row_count && col_idx - 1 >= 0
-#         # bottom right
-#         ats_around_counter += 1 if input_matrix[row_idx + 1, col_idx + 1] == '@' && row_idx + 1 < input_matrix.row_count && col_idx + 1 < input_matrix.column_count
-
-#         if ats_around_counter < 4
-#             accessible_rows_count += 1
-#         end
-#     end
-# end
-# puts accessible_rows_count
