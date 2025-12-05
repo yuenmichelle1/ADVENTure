@@ -23,6 +23,8 @@ end
 
 # puts part_one(example_input)
 
+## PART 2
+
 lower_bounds = []
 upper_bounds = []
 input.split.each do |line|
@@ -43,6 +45,7 @@ lower_bounds.each_with_index do |lower, i|
         new_uppers << upper_bounds[i]
     else
         recent_upper = new_uppers[-1]
+        # replace upper bound of new upper tracker, if there is an overlap
         if lower <= recent_upper
             new_uppers.pop
             new_uppers << upper_bounds[i]
@@ -55,6 +58,7 @@ end
 
 distances = 0
 new_lowers.each_with_index do |lower, i|
+    # add 1 to distance because these ranges are inclusive of the bounds
     distances += (new_uppers[i] - lower + 1)
 end
 puts distances
