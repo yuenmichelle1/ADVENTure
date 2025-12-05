@@ -42,18 +42,16 @@ new_uppers = []
 lower_bounds.each_with_index do |lower, i|
     if new_lowers.empty?
         new_lowers << lower
-        new_uppers << upper_bounds[i]
     else
         recent_upper = new_uppers[-1]
         # replace upper bound of new upper tracker, if there is an overlap
         if lower <= recent_upper
             new_uppers.pop
-            new_uppers << upper_bounds[i]
         else
             new_lowers << lower
-            new_uppers << upper_bounds[i]
         end
     end
+    new_uppers << upper_bounds[i]
 end
 
 distances = 0
