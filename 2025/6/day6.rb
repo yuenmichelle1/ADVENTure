@@ -4,10 +4,7 @@ example_input = File.readlines('./day6_example_input.txt')
 input = File.readlines('./day6_input.txt')
 
 def part_one(input)
-    input_arr = []
-    input.each do |l|
-        input_arr << l.split(' ')
-    end
+    input_arr = input.map { |l| l.split(' ') }
 
     math_sentences_matrix = Matrix[*input_arr]
     total_sum_of_answers = 0
