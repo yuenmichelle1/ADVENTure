@@ -21,7 +21,7 @@ def part_one(input)
     fresh_count
 end
 
-# puts part_one(example_input)
+puts part_one(input)
 
 ## PART 2
 
@@ -29,21 +29,21 @@ lower_bounds = []
 upper_bounds = []
 input.split.each do |line|
     if line.include?('-')
-        lower, upper = line.split('-').map(&:to_i)
+        lower, upper = line.split('-').map(&:to_i).sort
         lower_bounds << lower
         upper_bounds << upper
     end
 end
 
-lower_bounds = lower_bounds.sort
-upper_bounds = upper_bounds.sort
+lower_bounds = lower_bounds.sort # [3, 10, 12, 16]
+upper_bounds = upper_bounds.sort # [5, 14, 18, 20]
 new_lowers = []
 new_uppers = []
 lower_bounds.each_with_index do |lower, i|
     if new_lowers.empty?
         new_lowers << lower
     else
-        recent_upper = new_uppers[-1]
+        recent_upper = new_uppers[-1]  # 18
         # replace upper bound of new upper tracker, if there is an overlap
         if lower <= recent_upper
             new_uppers.pop
