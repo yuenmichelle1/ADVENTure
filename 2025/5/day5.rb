@@ -35,15 +35,15 @@ input.split.each do |line|
     end
 end
 
-lower_bounds = lower_bounds.sort # [3, 10, 12, 16]
-upper_bounds = upper_bounds.sort # [5, 14, 18, 20]
+lower_bounds = lower_bounds.sort
+upper_bounds = upper_bounds.sort
 new_lowers = []
 new_uppers = []
 lower_bounds.each_with_index do |lower, i|
     if new_lowers.empty?
         new_lowers << lower
     else
-        recent_upper = new_uppers[-1]  # 18
+        recent_upper = new_uppers[-1]
         # replace upper bound of new upper tracker, if there is an overlap
         if lower <= recent_upper
             new_uppers.pop
